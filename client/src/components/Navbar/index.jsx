@@ -50,8 +50,8 @@ const Navbar = () => {
               <span className="text-lg">🌱</span>
             </div>
             <div>
-              <span className="font-display font-bold text-xl text-white">Krishi</span>
-              <span className="font-display font-bold text-xl text-primary-400">Shop</span>
+              <span className="font-display font-bold text-xl text-white">Vindhya</span>
+              <span className="font-display font-bold text-xl text-primary-400">Krishi</span>
             </div>
           </Link>
 
@@ -96,6 +96,14 @@ const Navbar = () => {
 
                 {dropdownOpen && (
                   <div className="absolute right-0 top-12 w-48 glass rounded-2xl shadow-2xl border border-white/10 py-2 z-50">
+                    <Link
+                      to="/dashboard"
+                      onClick={() => setDropdownOpen(false)}
+                      className="flex items-center gap-2 px-4 py-2.5 text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors"
+                    >
+                      <FiShoppingBag size={15} />
+                      My Dashboard
+                    </Link>
                     {isAdmin && (
                       <Link
                         to="/admin"
