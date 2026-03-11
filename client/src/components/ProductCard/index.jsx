@@ -49,7 +49,7 @@ const ProductCard = ({ product, skeleton = false }) => {
           </div>
         )}
         {/* Stock overlay */}
-        {product.stock === 0 && (
+        {(product.inStock === false || product.stock === 0) && (
           <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
             <span className="text-white/80 font-medium text-sm bg-red-500/80 px-3 py-1 rounded-full">Out of Stock</span>
           </div>
