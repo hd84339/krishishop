@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './context/AuthContext';
-import { AdminRoute } from './components/ProtectedRoute';
+import { ProtectedRoute, AdminRoute } from './components/ProtectedRoute';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import ProductForm from './pages/AddProduct';
 import AuthCallback from './pages/AuthCallback';
+import UserDashboard from './pages/UserDashboard';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,6 +39,11 @@ function App() {
                 <Route path="/products/:id" element={<ProductDetails />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/auth/callback" element={<AuthCallback />} />
+
+                {/* User Routes */}
+                <Route path="/dashboard" element={
+                  <ProtectedRoute><UserDashboard /></ProtectedRoute>
+                } />
 
                 {/* Admin Routes */}
                 <Route path="/admin" element={
