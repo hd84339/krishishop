@@ -48,4 +48,12 @@ export const productAPI = {
   delete: (id) => API.delete(`/products/${id}`),
 };
 
+// Order APIs
+export const orderAPI = {
+  create: (data) => API.post('/orders', data),
+  getMyOrders: () => API.get('/orders/my'),
+  getAllOrders: () => API.get('/orders'),
+  updateStatus: (id, status) => API.put(`/orders/${id}/status`, { status }),
+};
+
 export default API;
