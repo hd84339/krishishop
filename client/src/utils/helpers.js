@@ -33,8 +33,8 @@ export const truncateText = (text, maxLength = 100) => {
   return text.substring(0, maxLength) + '...';
 };
 
-export const getStockStatus = (stock) => {
-  if (stock === 0) return { label: 'Out of Stock', color: 'text-red-400' };
+export const getStockStatus = (stock, inStock = true) => {
+  if (inStock === false || stock === 0) return { label: 'Out of Stock', color: 'text-red-400' };
   if (stock < 10) return { label: 'Low Stock', color: 'text-yellow-400' };
   return { label: 'In Stock', color: 'text-green-400' };
 };
