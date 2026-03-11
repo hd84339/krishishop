@@ -105,10 +105,10 @@ const Login = () => {
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-lg shadow-primary-500/30">
               <span className="text-xl">🌱</span>
             </div>
-            <span className="font-display font-bold text-2xl text-white">Krishi<span className="text-primary-400">Shop</span></span>
+            <span className="font-display font-bold text-2xl text-white">Vindhya<span className="text-primary-400">Krishi</span></span>
           </Link>
           <h1 className="font-display font-bold text-3xl text-white">
-            {mode === 'login' ? 'Welcome back' : 'Join KrishiShop'}
+            {mode === 'login' ? 'Welcome back' : 'Join VindhyaKrishi'}
           </h1>
           <p className="font-body text-white/50 mt-2 text-sm">
             {mode === 'login' ? 'Login to access your account' : 'Create an account to start shopping'}
