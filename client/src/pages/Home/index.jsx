@@ -15,7 +15,7 @@ const BENEFITS = [
 ];
 
 const TESTIMONIALS = [
-  { name: 'Ramesh Patel', location: 'Gujarat', text: 'KrishiShop has transformed my farming. Quality seeds and fast delivery made all the difference this season.', rating: 5 },
+  { name: 'Ramesh Patel', location: 'Gujarat', text: 'VindhyaKrishi has transformed my farming. Quality seeds and fast delivery made all the difference this season.', rating: 5 },
   { name: 'Sukhwinder Singh', location: 'Punjab', text: 'Best fertilizers at unbeatable prices. My crop yield increased by 40% after using their Khad products.', rating: 5 },
   { name: 'Lakshmi Devi', location: 'Andhra Pradesh', text: 'Very easy to use and trusted platform. Got genuine Kitnashak on time before the monsoon.', rating: 5 },
 ];
@@ -27,8 +27,8 @@ const Home = () => {
   const testimonialsRef = useRef(null);
 
   const { data, isLoading } = useQuery({
-    queryKey: ['featured-products'],
-    queryFn: () => productAPI.getAll({ featured: true, limit: 4 }),
+    queryKey: ['all-products'],
+    queryFn: () => productAPI.getAll({ limit: 100 }),
     select: (res) => res.data.products,
   });
 
@@ -62,6 +62,16 @@ const Home = () => {
         ref={heroRef}
         className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
       >
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src="/images/hero-bg.png" 
+            alt="Indian Farmland" 
+            className="w-full h-full object-cover opacity-25"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-dark/80 to-dark" />
+        </div>
+
         {/* Background Elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl animate-pulse-slow" />
@@ -147,12 +157,12 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Featured Products */}
+      {/* All Products */}
       <section ref={featuredRef} className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-12">
           <div>
-            <h2 className="section-title">Featured Products</h2>
-            <p className="section-subtitle">Handpicked for your farm</p>
+            <h2 className="section-title">Our Products</h2>
+            <p className="section-subtitle">Quality products for your farm</p>
           </div>
           <Link to="/products" className="btn-outline text-sm hidden md:flex items-center gap-2">
             View All <FiArrowRight size={15} />
@@ -189,7 +199,7 @@ const Home = () => {
       <section className="py-20 bg-black/20">
         <div ref={benefitsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="section-title">Why KrishiShop?</h2>
+            <h2 className="section-title">Why VindhyaKrishi?</h2>
             <p className="section-subtitle">Built with farmers in mind</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -247,7 +257,7 @@ const Home = () => {
               Ready to <span className="text-gradient">Grow?</span>
             </h2>
             <p className="font-body text-white/60 text-lg mb-8 max-w-2xl mx-auto">
-              Join over 50,000 Indian farmers who trust KrishiShop for quality agricultural inputs.
+              Join over 50,000 Indian farmers who trust VindhyaKrishi for quality agricultural inputs.
             </p>
             <Link to="/products" className="btn-primary px-10 py-4 text-base">
               Start Shopping 🌾
