@@ -6,6 +6,7 @@ const passport = require('passport');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 const User = require('./models/User');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
@@ -95,6 +96,7 @@ seedAdmin();
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 
 // Health check
 app.get('/health', (req, res) => res.json({ status: 'OK', message: 'Krishi Shop API Running 🌱' }));
