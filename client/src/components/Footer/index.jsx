@@ -120,15 +120,15 @@ const Footer = () => {
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <FiMapPin size={15} className="text-primary-400 mt-0.5 flex-shrink-0" />
-                  <span className="font-body text-sm text-white/50">Agriculture Shop, Vindhya Region, India</span>
+                  <span className="font-body text-sm text-white/50">nagamalpur bazar pali gyanpur road bhadohi </span>
                 </li>
                 <li className="flex items-center gap-3">
                   <FiPhone size={15} className="text-primary-400 flex-shrink-0" />
-                  <a href="tel:+919876543210" className="font-body text-sm text-white/50 hover:text-primary-400 transition-colors">+91 98765 43210</a>
+                  <a href="tel:+919876543210" className="font-body text-sm text-white/50 hover:text-primary-400 transition-colors">anoop dubey 9026463025 & abishek dubey 9250144985</a>
                 </li>
                 <li className="flex items-center gap-3">
                   <FiMail size={15} className="text-primary-400 flex-shrink-0" />
-                  <a href="mailto:support@vindhyakrishi.in" className="font-body text-sm text-white/50 hover:text-primary-400 transition-colors">support@vindhyakrishi.in</a>
+                  <a href="mailto:support@vindhyakrishi.in" className="font-body text-sm text-white/50 hover:text-primary-400 transition-colors">hd84339@gmail.com</a>
                 </li>
               </ul>
             </div>
