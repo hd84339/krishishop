@@ -217,12 +217,6 @@ const Login = () => {
             Continue with Google
           </button>
 
-          {/* Admin hint */}
-          <div className="mt-5 p-3 rounded-xl bg-primary-500/5 border border-primary-500/15">
-            <p className="font-body text-xs text-white/30 text-center">
-              Admin: <span className="text-primary-400/70">hd84339@gmail.com</span> / <span className="text-primary-400/70">admin123</span>
-            </p>
-          </div>
         </div>
 
         <p className="text-center mt-5 font-body text-sm text-white/30">
