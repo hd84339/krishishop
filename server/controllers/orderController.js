@@ -93,16 +93,38 @@ const getAllOrders = async (req, res) => {
 // @access  Private/Admin
 const updateOrderStatus = async (req, res) => {
   try {
-    const order = await Order.findById(req.params.id);
+    const order = await Order.findByIdAndUpdate(
+      req.params.id,
+      { status: req.body.status },
+      { new: true, runValidators: false }
+    );
+
     if (!order) {
       return res.status(404).json({ message: 'Order not found' });
     }
-    order.status = req.body.status;
-    await order.save();
+
     res.json(order);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-module.exports = { createOrder, getMyOrders, getAllOrders, updateOrderStatus };
+// @desc    Delete order (Admin)
+// @route   DELETE /api/orders/:id
+// @access  Private/Admin
+const deleteOrder = async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found' });
+    }
+
+    await order.deleteOne();
+    res.json({ message: 'Order removed' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { createOrder, getMyOrders, getAllOrders, updateOrderStatus, deleteOrder };

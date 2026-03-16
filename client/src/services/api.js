@@ -54,6 +54,7 @@ export const orderAPI = {
   getMyOrders: () => API.get('/orders/my'),
   getAllOrders: () => API.get('/orders'),
   updateStatus: (id, status) => API.put(`/orders/${id}/status`, { status }),
+  delete: (id) => API.delete(`/orders/${id}`),
 };
 
 export default API;
