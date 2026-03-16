@@ -87,6 +87,17 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleDeleteOrder = async (orderId) => {
+    if (!confirm('Are you sure you want to delete this order? This action cannot be undone.')) return;
+    try {
+      await orderAPI.delete(orderId);
+      toast.success('Order deleted successfully');
+      queryClient.invalidateQueries(['admin-orders']);
+    } catch {
+      toast.error('Failed to delete order');
+    }
+  };
+
   const products = productsData?.products || [];
   const totalValue = products.reduce((sum, p) => sum + p.price * p.stock, 0);
   const outOfStock = products.filter(p => p.stock === 0 || p.inStock === false).length;
@@ -273,9 +284,9 @@ const AdminDashboard = () => {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               {[
                 { label: 'Total Orders', value: orders?.length || 0, icon: FiShoppingBag, color: 'primary' },
-                { label: 'Pending', value: orders?.filter(o => o.status === 'Pending').length || 0, icon: FiClock, color: 'earth' },
-                { label: 'Completed', value: orders?.filter(o => o.status === 'Done').length || 0, icon: FiCheck, color: 'primary' },
-                { label: 'Rejected', value: orders?.filter(o => o.status === 'Rejected').length || 0, icon: FiX, color: 'red' },
+                { label: 'Pending', value: orders?.filter(o => o.status.toLowerCase() === 'pending').length || 0, icon: FiClock, color: 'earth' },
+                { label: 'Completed', value: orders?.filter(o => o.status.toLowerCase() === 'done').length || 0, icon: FiCheck, color: 'primary' },
+                { label: 'Rejected', value: orders?.filter(o => o.status.toLowerCase() === 'rejected').length || 0, icon: FiX, color: 'red' },
               ].map(({ label, value, icon: Icon, color }) => (
                 <div key={label} className="card p-5">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${
@@ -346,6 +357,14 @@ const AdminDashboard = () => {
                               {s}
                             </button>
                           ))}
+                          <button
+                            onClick={() => handleDeleteOrder(order._id)}
+                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-white/30 hover:text-red-400 hover:bg-red-500/10 transition-all border border-white/10 hover:border-red-500/20 ml-2"
+                            title="Delete Order"
+                          >
+                            <FiTrash2 size={14} />
+                            <span className="text-[10px] font-bold uppercase tracking-wider">Delete</span>
+                          </button>
                         </div>
                       </div>
 
