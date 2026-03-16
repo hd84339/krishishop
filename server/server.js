@@ -73,19 +73,30 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-// Seed admin user
+// Seed admin user(s)
 const seedAdmin = async () => {
   try {
-    const adminEmail = process.env.ADMIN_EMAIL || 'hd84339@gmail.com';
-    const existing = await User.findOne({ email: adminEmail });
-    if (!existing) {
-      await User.create({
-        name: 'Admin',
-        email: adminEmail,
-        password: process.env.ADMIN_PASSWORD || 'admin123',
-        role: 'admin',
-      });
-      console.log('✅ Admin user seeded');
+    const adminEmailsRaw = process.env.ADMIN_EMAIL || 'hd84339@gmail.com';
+    const adminEmails = adminEmailsRaw.split(',').map(email => email.trim());
+    const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+
+    for (const email of adminEmails) {
+      if (!email) continue;
+      
+      const existing = await User.findOne({ email });
+      if (!existing) {
+        await User.create({
+          name: 'Admin',
+          email: email,
+          password: adminPassword,
+          role: 'admin',
+        });
+        console.log(`✅ Admin user seeded: ${email}`);
+      } else if (existing.role !== 'admin') {
+        existing.role = 'admin';
+        await existing.save();
+        console.log(`🆙 User promoted to Admin: ${email}`);
+      }
     }
   } catch (err) {
     console.log('Admin seed error:', err.message);
